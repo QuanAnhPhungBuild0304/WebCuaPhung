@@ -1,0 +1,57 @@
+﻿@model KucKuStore.Models.Entities.NGUOIDUNG
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <strong style=" text-align: center; color:blue"><h2>THÊM MỚI NGƯỜI DÙNG</h2></strong>
+   
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TENDN, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TENDN, new { htmlAttributes = new { @class = "form-control" } })
+            <span id="errTenDN"></span>
+            @Html.ValidationMessageFor(model => model.TENDN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MATKHAU, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { @class = "form-control" } })
+            <span id="errMK"></span>
+            @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MAIL, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MAIL, new { htmlAttributes = new { @class = "form-control" } })
+            <span id="errMail"></span>
+            @Html.ValidationMessageFor(model => model.MAIL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-10">
+            <input style="margin-top:20px" id="btnThemmoi" type="submit" value="Tạo mới" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+    
+<div style="margin-top:150px">
+ 
+    <a style="color:blue" href="@Url.Action("Index", "TaiKhoanAdmin")"><< Quay về</></a>
+</div>

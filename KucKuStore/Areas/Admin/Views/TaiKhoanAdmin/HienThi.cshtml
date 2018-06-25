@@ -1,0 +1,42 @@
+﻿@model KucKuStore.Models.Entities.NGUOIDUNG
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+<div>
+    <strong style=" text-align: center; color:blue"><h2>THÔNG TIN NGƯỜI DÙNG</h2></strong>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENDN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENDN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MATKHAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MATKHAU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MAIL)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { @MAND = Model.MAND }) |
+    @Html.ActionLink("<<Quay Về", "Index")
+</p>

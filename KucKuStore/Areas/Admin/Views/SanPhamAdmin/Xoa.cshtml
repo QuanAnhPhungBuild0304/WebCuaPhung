@@ -1,0 +1,98 @@
+﻿@model KucKuStore.Models.Entities.SANPHAM
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+<strong style=" text-align: center; color:blue"><h2>XÓA SẢN PHẨM</h2></strong>
+<h3>Xóa sản phẩm này nhé?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DANHMUC.TENDM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DANHMUC.TENDM)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIAMGIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GIAMGIA)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HINHANH)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Content/img/product-img/" +Model.HINHANH)" width="100px" height="100px" />
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONG)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NHACC.TENNCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHACC.TENNCC)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYNHAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYNHAP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CHITIET)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.CHITIET)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions color10">
+            <input type="submit" value="Xóa" class="btn btn-default" /> |
+            @Html.ActionLink("Trở Về ", "Index")
+        </div>
+    }
+</div>

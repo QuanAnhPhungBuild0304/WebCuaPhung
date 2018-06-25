@@ -61,7 +61,7 @@ namespace KucKuStore.Models.Entities
                 .IsFixedLength();
 
             modelBuilder.Entity<NGUOIDUNG>()
-                .Property(e => e.EMAIL)
+                .Property(e => e.MAIL)
                 .IsFixedLength();
 
             modelBuilder.Entity<NHACC>()

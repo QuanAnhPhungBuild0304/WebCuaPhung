@@ -1,0 +1,122 @@
+﻿@model PagedList<KucKuStore.Models.Entities.SANPHAM>
+
+@using PagedList.Mvc
+@using PagedList
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong style=" text-align: center; color:blue"><h2>SẢN PHẨM</h2></strong>
+                    <a style="color:blue" href="@Url.Action("Create", "SanPhamAdmin")"> Tạo mới</></a>
+                   
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <tr>
+                            <th>
+                                Sản phẩm
+                            </th>
+                            <th>
+                                Danh mục
+                            </th>
+                            <th>
+                                Sale
+                            </th>
+                            <th>
+                                Hình ảnh
+                            </th>
+                           
+                            <th>
+                                Giá
+                            </th>
+
+                            <th>
+                                Số lượng
+                            </th>
+
+                            <th>
+                                Chi tiết
+                            </th>
+
+
+                            <th>
+                                Nhà CC
+                            </th>
+
+
+                            <th>
+                                Ngày nhập
+                            </th>
+
+                            <th>
+                                Chức năng
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TENSP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DANHMUC.TENDM)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GIAMGIA)
+                            </td>
+                            <td>
+                                @*@Html.DisplayFor(modelItem => item.HINHANH)*@
+                                <div id="AnhBia">
+                                    <img src="@Url.Content("~/Content/img/product-img/" +item.HINHANH)" width="100px" height="100px"/>
+                                </div>
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GIA)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SOLUONG)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CHITIET)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NHACC.TENNCC)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NGAYNHAP)
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Chỉnh sửa", "Edit", new { @MASP = item.MASP }) |
+                                @Html.ActionLink("Xem chi tiết", "HienThi", new { @MASP = item.MASP }) |
+                                @Html.ActionLink("Xóa", "Xoa", new { @MASP = item.MASP })
+                            </td>
+                        </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- .animated -->
+
+
+    @Html.PagedListPager(Model, pageTemp => Url.Action("Index", new { pageTemp = pageTemp }), new PagedListRenderOptions()
+{
+    LiElementClasses = new List<string> { "tav_button", "tav_item" }
+})
+

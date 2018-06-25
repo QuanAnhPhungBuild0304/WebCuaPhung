@@ -1,0 +1,43 @@
+﻿@model KucKuStore.Models.Entities.DANHMUC
+
+@{
+    ViewBag.Title = "HienThi";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<h2>HienThi</h2>
+
+<div>
+    <h4>DANHMUC</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENDM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENDM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIEUDENGAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIEUDENGAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { @MADM = Model.MADM }) |
+    @Html.ActionLink("<< Quay Về", "Index")
+</p>

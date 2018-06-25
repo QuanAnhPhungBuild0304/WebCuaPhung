@@ -1,0 +1,50 @@
+﻿@model KucKuStore.Models.Entities.DANHMUC
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+<strong style=" text-align: center; color:blue"><h2>XÓA DANH MỤC</h2></strong>
+<h3>Xóa Danh mục này nhé?</h3>
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENDM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENDM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIEUDENGAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIEUDENGAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("<<Quay về", "Index")
+        </div>
+    }
+</div>

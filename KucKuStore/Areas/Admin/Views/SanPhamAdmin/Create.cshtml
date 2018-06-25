@@ -1,0 +1,103 @@
+﻿@model KucKuStore.Models.Entities.SANPHAM
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Create", "SanPhamAdmin", FormMethod.Post, new { @enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <strong style=" text-align: center; color:blue"><h2>THÊM SẢN PHẨM MỚI</h2></strong>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.TENSP, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TENSP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TENSP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MADM, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.DropDownList("MADM", null, htmlAttributes: new { @class = "form-control" })
+
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GIA, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GIA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GIA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GIAMGIA, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GIAMGIA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GIAMGIA, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HINHANH, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @*name thẻ input file phải == ten vs tham so ben controller*@
+            <input type="file" name="fileanh" class="form-control">
+            @*Thông báo khi chọn ảnh đã có trong thư mục ảnh trên server rồi*@
+            @ViewBag.ThongBao
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SOLUONG, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MANCC, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.DropDownList("MANCC", null, htmlAttributes: new { @class = "form-control" })
+          
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.NGAYNHAP, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NGAYNHAP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NGAYNHAP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CHITIET, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-10">
+            <textarea>Mô tả!</textarea>
+            @*@Html.EditorFor(model => model.CHITIET, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CHITIET, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input style="margin-top:20px" id="btnThemmoi" type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div style="margin: 290px 0px 50px 0px" >
+    <a style="color:blue" href="@Url.Action("Index", "SanPhamAdmin")"> << Quay Về</></a>
+</div>

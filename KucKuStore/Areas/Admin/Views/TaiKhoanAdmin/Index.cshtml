@@ -1,0 +1,68 @@
+﻿@model PagedList<KucKuStore.Models.Entities.NGUOIDUNG>
+@using PagedList.Mvc
+@using PagedList
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong style=" text-align: center; color:blue"><h2>TÀI KHOẢN</h2></strong>
+                    <a style="color:blue" href="@Url.Action("Create", "TaiKhoanAdmin")"> Tạo mới</></a>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <tr>
+                        <th>
+                            Tên đăng nhập
+                        </th>
+                        <th>
+                            Mật khẩu
+                        </th>
+                        <th>
+                           Mail
+                        </th>
+                        <th>
+                            Chức năng
+                        </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TENDN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MATKHAU)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MAIL)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", new { @MAND = item.MAND }) |
+                                    @Html.ActionLink("Xem", "HienThi", new { @MAND = item.MAND }) |
+                                    @Html.ActionLink("Xóa", "Xoa", new { @MAND = item.MAND })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- .animated -->
+
+
+
+    @Html.PagedListPager(Model, pageTemp => Url.Action("Index", new { pageTemp = pageTemp }), new PagedListRenderOptions()
+{
+    LiElementClasses = new List<string> { "tav_button", "tav_item" }
+})
+   

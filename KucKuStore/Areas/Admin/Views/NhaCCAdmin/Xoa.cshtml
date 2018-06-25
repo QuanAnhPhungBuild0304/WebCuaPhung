@@ -1,0 +1,50 @@
+﻿@model KucKuStore.Models.Entities.NHACC
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+
+<strong style=" text-align: center; color:blue"><h2>XÓA NHÀ CUNG CẤP</h2></strong>
+<h3>Xóa Nhà cung cấp này nhé?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENNCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENNCC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMAIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMAIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("<< Quay về", "Index")
+        </div>
+    }
+</div>

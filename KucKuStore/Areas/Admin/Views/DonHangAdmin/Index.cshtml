@@ -1,0 +1,88 @@
+﻿@model PagedList<KucKuStore.Models.Entities.DONHANG>
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
+}
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong style=" text-align: center; color:blue"><h2>ĐƠN HÀNG</h2></strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                        <tr>
+                            <th>
+                                Khách hàng
+                            </th>
+                            <th>
+                                Địa chỉ
+                            </th>
+                            <th>
+                                Điện thoại
+                            </th>
+                            <th>
+                                Mail
+                            </th>
+                            <th>
+                               Trạng thái
+                            </th>
+                            <th>
+                                Ngày tạo
+                            </th>
+                            <th>
+                                Ghi chú
+                            </th>
+                            <th>Chức năng</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TENKH)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DIACHI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DIENTHOAI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EMAIL)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TRANGTHAI)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NGAYTAO)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GHICHU)
+                                </td>
+                                <td>
+                                    @*<a style="color:blue" href="@Url.Action("Edit", "DonHangAdmin")">Sửa</></a>*@
+
+                                    @Html.ActionLink("Sửa", "Edit", new { @MADH = item.MADH }) |
+                                    @Html.ActionLink("Xem", "HienThi", new { @MADH = item.MADH })
+                               
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- .animated -->
+
+
+    @Html.PagedListPager(Model, pageTemp => Url.Action("Index", new { pageTemp = pageTemp }), new PagedListRenderOptions()
+{
+    LiElementClasses = new List<string> { "tav_button", "tav_item" }
+})
+  
