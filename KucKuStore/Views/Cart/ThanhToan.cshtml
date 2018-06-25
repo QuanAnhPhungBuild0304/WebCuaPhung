@@ -1,0 +1,101 @@
+﻿@using KucKuStore.Models.Entities;
+@model List<CartItem>
+
+@{
+    Layout = "~/Views/Shared/LayoutIndex.cshtml";
+    ViewBag.Title = "ThanhToan";
+}
+
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(/Content/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Thanh toán</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+<!-- ##### Checkout Area Start ##### -->
+<div class="checkout_area section-padding-80">
+    <div class="container">
+        <form action="/Cart/ThanhToan" method="post">
+        <div class="row">
+
+            <div class="col-12 col-md-6">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-page-heading mb-30">
+                        <h5>Thông tin khách hàng</h5>
+                    </div>
+                    <form action="#" method="post">
+                        <div class="row">
+                           
+                            <div class="col-12 mb-3">
+                                <label for="tenkh">Họ tên <span>*</span></label>
+                                <input type="text" class="form-control" id="tenkh" name="tenkh" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="diachi">Địa chỉ <span>*</span></label>
+                                <input type="text" class="form-control mb-3" id="diachi" name="diachi" value="" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for="sdt">Số điện thoại <span>*</span></label>
+                                <input type="number" class="form-control" id="sdt" min="0" name="sdt" value="" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="email">Email <span>*</span></label>
+                                <input type="email" class="form-control" id="email" value="" name="email" required>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <label for="ghichu">Ghi chú </label>
+                                <input type="text" class="form-control" id="ghichu" value="" name="ghichu" >
+                            </div>
+
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox d-block mb-2">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" required>
+                                    <label class="custom-control-label" for="customCheck1">Tôi đồng ý với các quy định của cửa hàng.</label>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                <div class="order-details-confirmation">
+
+                    <div class="cart-page-heading">
+                        <h5>Hóa đơn</h5>
+                        <p>Thông tin đơn hàng</p>
+                    </div>
+
+                    <ul class="order-details-form mb-4">
+                        <li><span>Sản phẩm</span> <span>Thành tiền</span></li>
+                        @foreach(var item in Model)
+                        {
+                            <li><span>@item.SANPHAM.TENSP</span><span>@item.Quantity x @(item.SANPHAM.GIA-item.SANPHAM.GIA*item.SANPHAM.GIAMGIA/100)</span></li>
+                        }
+                        <li><span>Phí vận chuyển</span> <span>Free</span></li>
+                        <li><span>Tổng cộng</span> <span>@(ViewBag.TongTien.ToString("0,0"))</span></li>
+                    </ul>
+
+                    <div id="accordion" role="tablist" class="mb-4">
+                        <input type="radio" name="trangthai" value="0". id="tt1"  checked><label  for="tt1">&emsp; Thanh toán khi nhận hàng</label><br><br />
+                        <input type="radio" name="trangthai" value="1" id=" tt2"><label  for="tt2">&emsp; Thanh toán qua thẻ tín dụng</label><br>
+                    </div>
+
+                    <button type="submit"  class="btn essence-btn">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+            </form>
+    </div>
+</div>
+<!-- ##### Checkout Area End ##### -->

@@ -1,0 +1,40 @@
+﻿@model KucKuStore.Models.Entities.SANPHAM
+
+@{
+    ViewBag.Title = "ChiTietSP" + Model.TENSP;
+    Layout = "~/Views/Shared/LayoutIndex.cshtml";   
+}
+<!-- ##### Single Product Details Area Start ##### -->
+<section class="single_product_details_area d-flex align-items-center">
+        
+    <!-- Single Product Thumb -->
+    <div class="single_product_thumb clearfix" style="padding-left: 150px">
+            <img src="~/Content/img/product-img/@Model.HINHANH" width="450" alt="">
+         
+    </div>
+
+    <!-- Single Product Description -->
+    <div class="single_product_desc clearfix">
+
+        <a href="cart.html">
+            <h2>@Model.TENSP</h2>
+        </a>
+        <p class="product-price"><span class="old-price">@Model.GIA</span> @(Model.GIA - Model.GIA * Model.GIAMGIA / 100)</p>
+        <p class="product-desc">Thương hiệu: @Model.NHACC.TENNCC</p>
+        <p class="product-desc">@Model.CHITIET</p>
+        <!-- Form -->
+        <form class="cart-form clearfix" method="post">
+            <!-- Select Box -->
+            <!-- Cart & Favourite Box -->
+            <div class="cart-fav-box d-flex align-items-center">
+                <!-- Cart -->
+                <a href="/Cart/AddItem/@Model.MASP" class="btn essence-btn">Thêm vào giỏ hàng</a>
+                <!-- Favourite -->
+                <div class="product-favourite ml-4">
+                    <a href="#" class="favme fa fa-heart"></a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- ##### Single Product Details Area End ##### -->

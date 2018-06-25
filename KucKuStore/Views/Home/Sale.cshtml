@@ -1,0 +1,160 @@
+﻿@using KucKuStore.Models.Entities;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+@{
+    ViewBag.Title = "Sale";
+    Layout = "~/Views/Shared/LayoutIndex.cshtml";
+}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(/Content/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Sale</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+<!-- ##### Shop Grid Area Start ##### -->
+<section class="shop_grid_area section-padding-80">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4 col-lg-3">
+                <div class="shop_sidebar_area">
+                    <!-- ##### Single Widget ##### -->
+                    <div class="widget catagory mb-50">
+                        <!-- Widget Title -->
+                        <h6 class="widget-title mb-30">Mặt hàng</h6>
+                        <!--  Catagories  -->
+                        <div class="catagories-menu">
+                            <ul id="menu-content2" class="menu-content collapse show">
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#ao">
+                                    <a href="#">Áo</a>
+                                    <ul class="sub-menu collapse" id="ao">
+                                        @foreach (var dm in ViewBag.DANHMUC1)
+                                        {
+                                            <li><a href="/SanPham/Shop/@dm.MADM">@dm.TENDM</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#quan" class="collapsed">
+                                    <a href="#">Quần</a>
+                                    <ul class="sub-menu collapse" id="quan">
+                                        @foreach (var dm in ViewBag.DANHMUC2)
+                                        {
+                                            <li><a href="/SanPham/Shop/@dm.MADM">@dm.TENDM</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#cv" class="collapsed">
+                                    <a href="#">Váy</a>
+                                    <ul class="sub-menu collapse" id="cv">
+                                        @foreach (var dm in ViewBag.DANHMUC3)
+                                        {
+                                            <li><a href="/SanPham/Shop/@dm.MADM">@dm.TENDM</a></li>
+                                        }
+                                    </ul>
+                                </li>
+
+                                <!-- Single Item -->
+                                <li data-toggle="collapse" data-target="#phukien" class="collapsed">
+                                    <a href="#">Phụ kiện</a>
+                                    <ul class="sub-menu collapse" id="phukien">
+                                        @foreach (var dm in ViewBag.DANHMUC4)
+                                        {
+                                            <li><a href="/SanPham/Shop/@dm.MADM">@dm.TENDM</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-9">
+                <div class="shop_grid_product_area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product-topbar d-flex align-items-center justify-content-between">
+                                <!-- Total Products -->
+                                <div class="total-products">
+                                    <div style="display:table; color:darkgray; padding-left :20px;">
+                                    </div>
+                                </div>
+
+                                <!-- Sorting -->
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- ##### View Product Start ##### -->
+                        @foreach (SANPHAM item in Model)
+                        {
+                            <!-- Single Product -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src="/Content/img/product-img/@item.HINHANH" alt="">
+                                        <!-- Hover Thumb -->
+                                        <!-- Product Badge -->
+                                        <div class="product-badge offer-badge">
+                                            <span> -@item.GIAMGIA%</span>
+                                        </div>
+                                        <!-- Favourite -->
+                                        <div class="product-favourite">
+                                            <a href="#" class="favme fa fa-heart"></a>
+                                        </div>
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        @if (item.SOLUONG > 0)
+                                        {
+                                            <span>Còn hàng</span>
+                                        }
+                                        @if (item.SOLUONG <= 0)
+                                        {
+                                            <span>Hết hàng</span>
+                                        }
+                                        <a href="/SanPham/ChiTietSP/@item.MASP">
+                                            <h6>@item.TENSP</h6>
+                                        </a>
+                                        <p class="product-price"><span class="old-price">@item.GIA</span> @(item.GIA - item.GIA * item.GIAMGIA / 100)</p>
+                                        <!-- Hover Content -->
+                                        <div class="hover-content">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+                                                <a href="/Cart/AddItem/@item.MASP " class="btn essence-btn">Thêm vào giỏ hàng</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <!-- ##### View Product End ##### -->
+
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <nav aria-label="navigation">
+                    <div style="display :inline-grid; color:darkgray; font-size:50px;">
+                        @Html.PagedListPager(Model, page => Url.Action("Sale", new { page = page }))
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+<!-- ##### Shop Grid Area End ##### -->
